@@ -24,14 +24,14 @@
   "rules": {
     "indent": ["warn", "tab"],
     "linebreak-style": ["warn", "unix"],
-    "semi": ["warn", "never"],
+    "semi": ["error", "never"],
     "prettier/prettier": [
       "error",
       {
-        "semi": false,
-        "ignoreSemicolons": true
+        "semi": false
       }
     ],
+    "no-extra-semi": "error",
     "eqeqeq": ["error", "always"],
     "no-empty-function": "error",
     "no-implicit-coercion": "error",
