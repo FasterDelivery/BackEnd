@@ -24,7 +24,7 @@
   "rules": {
     "indent": ["warn", "tab"],
     "linebreak-style": ["warn", "unix"],
-    "semi": ["warn", "never"],
+    "prettier/prettier": ["error", { "semi": false }],
     "eqeqeq": ["error", "always"],
     "no-empty-function": "error",
     "no-implicit-coercion": "error",
