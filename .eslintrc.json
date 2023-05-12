@@ -25,7 +25,13 @@
     "indent": ["warn", "tab"],
     "linebreak-style": ["warn", "unix"],
     "semi": ["warn", "never"],
-    "prettier/prettier": ["error", { "semi": true }],
+    "prettier/prettier": [
+      "error",
+      {
+        "semi": false,
+        "ignoreSemicolons": true
+      }
+    ],
     "eqeqeq": ["error", "always"],
     "no-empty-function": "error",
     "no-implicit-coercion": "error",
