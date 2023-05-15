@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js"
+    "start": "node index.js",
+    "lint": "eslint \"*/**/*.{js,ts,tsx}\" --fix",
+    "prepare": "husky install"
   },
   "repository": {
     "type": "git",
@@ -17,5 +19,14 @@
   "bugs": {
     "url": "https://github.com/FasterDelivery/BackEnd/issues"
   },
-  "homepage": "https://github.com/FasterDelivery/BackEnd#readme"
+  "homepage": "https://github.com/FasterDelivery/BackEnd#readme",
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.59.5",
+    "eslint": "^8.40.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-cypress": "^2.13.3",
+    "eslint-plugin-prettier": "^4.2.1",
+    "prettier": "^2.8.8",
+    "husky": "^8.0.0"
+  }
 }
