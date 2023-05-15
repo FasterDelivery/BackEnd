@@ -1,4 +1,4 @@
-import { Request, Response, Router } from "express";
+import { Request, Response } from "express";
 import { generateToken, validateToken } from "../config/token";
 
 export function exampleGenerateToken(req: Request, res: Response): Response {
@@ -24,3 +24,5 @@ export function exampleValidateToken(req: Request, res: Response): Response {
   }
   return res.status(401).send({ message: "Token not provided" });
 }
+
+
