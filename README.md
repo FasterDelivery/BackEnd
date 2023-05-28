@@ -152,6 +152,14 @@ release/12.4.100
   <li> Una vez terminada la rama hotfix, esta se fusiona tanto en develop como en main. </li>
 </ol>
 
+## Iniciar el proyecto con Docker 
+Acceder el repositorio frontend: https://github.com/FasterDelivery/front
+Clonar repositorio, realizar la instalacion de dependencias. 
+Ejecutar los siguientes comandos: 
+
+<h6> docker-compose build <h6/>
+<h6> docker-compose up </h6> 
+
 ## Roadmap
 
 <!-- WEB -->
