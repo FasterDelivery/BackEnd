@@ -153,8 +153,8 @@ release/12.4.100
 </ol>
 
 ## Iniciar el proyecto con Docker 
-Acceder el repositorio frontend: https://github.com/FasterDelivery/front
-Clonar repositorio, realizar la instalacion de dependencias. 
+Acceder el repositorio frontend: https://github.com/FasterDelivery/front <br/>
+Clonar repositorio, realizar la instalacion de dependencias. <br/> 
 Ejecutar los siguientes comandos: 
 
 <h6> docker-compose build <h6/>
