@@ -1,10 +1,11 @@
 import express, { Request, Response, NextFunction } from "express";
-const app = express();
 import bodyParser from "body-parser";
 import router from "./routes/index";
+import db from "./config/db";
+import { User, Package } from "./models";
 
+const app = express();
 app.use(bodyParser.json());
-
 app.use("/api", router);
 
 app.get("/", (req: Request, res: Response): void => {
@@ -16,4 +17,6 @@ app.use((err: Error, req: Request, res: Response, next: NextFunction): void => {
   res.status(500).send("Internal Server Error");
 });
 
-app.listen(3001, () => console.log("Server listening on port 3001"));
+db.sync({ force: false }).then(() => {
+  app.listen(3001, () => console.log("Server listening on port 3001"));
+});

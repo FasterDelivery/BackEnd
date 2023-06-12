@@ -1,13 +1,7 @@
 import express, { Router } from "express";
-import {
-  exampleGenerateToken,
-  exampleValidateToken,
-} from "../controllers/index";
-
 const router: Router = express.Router();
+import usersRouter from "./user";
 
-router.post("/example", exampleGenerateToken);
-
-router.get("/", exampleValidateToken);
+router.use("/user", usersRouter);
 
 export default router;
