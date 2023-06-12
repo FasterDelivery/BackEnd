@@ -3,8 +3,15 @@ import bodyParser from "body-parser";
 import router from "./routes/index";
 import db from "./config/db";
 import { User, Package } from "./models";
+import cors from "cors";
 
 const app = express();
+app.use(
+  cors({
+    credentials: true,
+    origin: true,
+  })
+);
 app.use(bodyParser.json());
 app.use("/api", router);
 
