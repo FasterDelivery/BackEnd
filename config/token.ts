@@ -1,9 +1,13 @@
 import jwt from "jsonwebtoken";
-const SECRET: string = "grupo2";
+const SECRET = "grupo2";
 
-export function generateToken(payload: Object): string {
+interface Payload {
+  email: string;
+  name: string;
+}
+export function generateToken(payload: Payload): string {
   const token: string = jwt.sign({ payload }, SECRET, {
-    expiresIn: "2h",
+    expiresIn: "2h"
   });
 
   return token;
