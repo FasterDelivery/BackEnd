@@ -24,3 +24,4 @@ const swaggerDocs = (app: any, num: any): any => {
 };
 
 module.exports = { swaggerDocs };
+export {};

@@ -30,7 +30,7 @@ export async function login(req: Request, res: Response): Promise<Response> {
       return res.status(401).send("mensaje de error");
     }
     //hacer validacion de contrasenia
-    const token = generateToken({});
+    const token = generateToken(payload);
     return res.status(201).send({ token, message: "Sesion iniciada" });
   } catch {
     return res.status(500).send("otro mensaje de error");
