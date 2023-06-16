@@ -1,4 +1,4 @@
-name: Husky
+name: Back CI
 on:
   push:
     branches:
@@ -10,13 +10,13 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - name: Eslint
+    - name: Checkout repository
       uses: actions/checkout@v2
     - name: Use Node.js
       uses: actions/setup-node@v1
       with:
-        node-version: '16.x'
+        node-version: '18.x'
     - name: Install dependencies
-      run: npm ci
+      run: npm i
     - name: Run eslint
       run: npm run lint
