@@ -1,4 +1,4 @@
-import { Request, Response, Router } from "express";
+import { Request, Response } from "express";
 import { generateToken, validateToken } from "../config/token";
 import User from "../models/User";
 
@@ -41,7 +41,7 @@ export function exampleUseToken(req: Request, res: Response): Response {
   const token: string | undefined = req.headers.authorization?.split(" ")[1];
   if (token) {
     try {
-      const decodedToken: Object = validateToken(token);
+      const decodedToken: any = validateToken(token);
       console.log(decodedToken);
       return res
         .status(200)

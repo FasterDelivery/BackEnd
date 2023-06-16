@@ -4,8 +4,7 @@
     "browser": true,
     "es2021": true,
     "node": true,
-    "commonjs": true,
-    "cypress/globals": true
+    "commonjs": true
   },
   "extends": [
     "eslint:recommended",
@@ -33,6 +32,7 @@
     "@typescript-eslint/no-explicit-any": "error",
     "@typescript-eslint/no-duplicate-enum-values": "error",
     "@typescript-eslint/no-inferrable-types": "off"
+    
   },
   "overrides": [
     {
@@ -50,7 +50,8 @@
         "@typescript-eslint/no-unused-vars": "error",
         "@typescript-eslint/no-explicit-any": "off",
         "jsdoc/require-param-type": "off",
-        "jsdoc/require-returns-type": "off"
+        "jsdoc/require-returns-type": "off",
+        "@typescript-eslint/no-var-requires": "off"
       }
     }
   ]
