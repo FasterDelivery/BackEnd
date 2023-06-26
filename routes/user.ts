@@ -1,9 +1,11 @@
 import express, { Router } from "express";
 import {
-  exampleUseToken,
+  deleteUser,
+  editUser,
   login,
   register
 } from "../controllers/userController";
+import { isDelivery } from "../middleware/validateMiddleware";
 const router: Router = express.Router();
 
 router.post("/register", register);
@@ -52,8 +54,11 @@ router.post("/register", register);
  *          ServerError:
  *            description: Error en servidor
  */
+
 router.post("/login", login);
 
-router.get("/example", exampleUseToken);
+router.put("/edit/:id", isDelivery, editUser);
+
+router.delete("/delete/:id", isDelivery, deleteUser);
 
 export default router;

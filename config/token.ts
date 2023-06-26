@@ -1,12 +1,8 @@
 import jwt from "jsonwebtoken";
+import { IPayload } from "../interfaces/IPayload";
 const SECRET = "grupo2";
 
-interface Payload {
-  email: string;
-  name: string;
-}
-
-export function generateToken(payload: Payload): string {
+export function generateToken(payload: IPayload): string {
   const token: string = jwt.sign({ payload }, SECRET, {
     expiresIn: "2h"
   });
@@ -14,6 +10,6 @@ export function generateToken(payload: Payload): string {
   return token;
 }
 
-export function validateToken(token: string): object | string {
+export function validateToken(token: string): Object | string {
   return jwt.verify(token, SECRET);
 }

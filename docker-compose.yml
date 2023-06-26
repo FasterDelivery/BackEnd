@@ -1,0 +1,32 @@
+version: "3"
+services:
+  db:
+    image: postgres:10
+    environment:
+      POSTGRES_DB: "fastdelivery"
+      POSTGRES_USER: "mateo"
+      POSTGRES_PASSWORD: ""
+      POSTGRES_HOST_AUTH_METHOD: "trust"
+    ports:
+      - "5432"
+  back:
+    build: ./
+    environment:
+      PORT: 3001
+      BASE_URL: "http://localhost/"
+      DB_NAME: "fastdelivery"
+      POSTGRES_USER: ""
+      POSTGRES_PASSWORD: ""
+      DB_HOST: db
+    ports:
+      - "3001:3001"
+    depends_on:
+      - db
+    mem_limit: 1g
+  client:
+    build:
+      context: https://github.com/FasterDelivery/front.git
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./front:/app

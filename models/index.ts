@@ -1,8 +1,10 @@
 import User from "./User";
 import Package from "./Package";
 
-//User.hasMany(Package);
-//Package.belongsTo(User);
+User.hasMany(Package);
+Package.belongsTo(User);
+
+export { User, Package };
 
 /**
  * @openapi
@@ -17,5 +19,3 @@ import Package from "./Package";
  *         password:
  *           type: string
  */
-
-export { User, Package };
