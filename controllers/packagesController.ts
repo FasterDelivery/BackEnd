@@ -33,6 +33,7 @@ export async function editPackage(req: Request, res: Response) {
       returning: true,
       individualHooks: true
     });
+    console.log(_);
     if (!editedPackage) {
       return res.status(404).send("Package not found");
     }
