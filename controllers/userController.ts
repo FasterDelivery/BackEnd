@@ -21,7 +21,6 @@ export async function login(req: Request, res: Response): Promise<Response> {
       email: req.body.email,
       password: req.body.password
     };
-    const users = await User.findAll();
     const user = await User.findOne({ where: { email: payload.email } });
     if (!user) {
       return res.status(401).send("Invalid credentials");
@@ -44,6 +43,7 @@ export async function editUser(req: Request, res: Response) {
       returning: true,
       individualHooks: true
     });
+    console.log(_);
     if (!editedUser) {
       return res.status(401).send("Invalid credentials");
     }

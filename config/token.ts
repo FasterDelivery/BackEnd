@@ -10,6 +10,6 @@ export function generateToken(payload: IPayload): string {
   return token;
 }
 
-export function validateToken(token: string): Object | string {
+export function validateToken(token: string) {
   return jwt.verify(token, SECRET);
 }

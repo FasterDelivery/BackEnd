@@ -3,7 +3,7 @@ import { User, Package } from "../models";
 
 export async function getAllDeliveries(req: Request, res: Response) {
   try {
-    const allUSers: Object = await User.findAll({
+    const allUSers = await User.findAll({
       where: { isAdmin: false }
     });
     if (!allUSers) {
@@ -17,7 +17,7 @@ export async function getAllDeliveries(req: Request, res: Response) {
 
 export async function getAllActiveDeliveries(req: Request, res: Response) {
   try {
-    const allUSers: Object = await User.findAll({
+    const allUSers = await User.findAll({
       where: { isAdmin: false, status: "active" }
     });
     if (!allUSers) {
@@ -33,7 +33,7 @@ export async function getAllActiveDeliveries(req: Request, res: Response) {
 
 export async function getAllPackages(req: Request, res: Response) {
   try {
-    const allPackages: Object = await Package.findAll();
+    const allPackages = await Package.findAll();
     if (!allPackages) {
       return res.status(404).send({ message: "Packages not found" });
     }
@@ -68,6 +68,7 @@ export async function updatePackage(req: Request, res: Response) {
       returning: true,
       individualHooks: true
     });
+    console.log(_);
     if (!editedPackage) {
       return res.status(404).send("Package not found");
     }
@@ -82,7 +83,7 @@ export async function updatePackage(req: Request, res: Response) {
 export async function deletePackage(req: Request, res: Response) {
   try {
     const packageId = req.params.id;
-    const editedPackage: any = await Package.destroy({
+    const editedPackage = await Package.destroy({
       where: { id: packageId }
     });
     if (!editedPackage) {
