@@ -1,5 +1,5 @@
 export interface IPackage {
-  id: number;
+  id?: number;
   clientname: string;
   image?: string[];
   quantity: number;

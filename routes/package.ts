@@ -1,9 +1,12 @@
 import express, { Router } from "express";
-import { isDelivery } from "../middleware/validateMiddleware";
+import { isAdmin, isDelivery } from "../middleware/validateMiddleware";
 import {
   editPackage,
   getAllPackages,
-  selectPackages
+  selectPackages,
+  createPackage,
+  deletePackage,
+  updatePackage
 } from "../controllers/packagesController";
 
 const router: Router = express.Router();
@@ -145,5 +148,13 @@ router.put("/:idUser/edit/package/:idPackage", isDelivery, editPackage);
  *            description: Error en servidor
  */
 router.get("/:idUser/packages", isDelivery, getAllPackages);
+
+router.post("/new", isAdmin, createPackage);
+
+router.get("/", isAdmin, getAllPackages);
+
+router.put("/edit/package/:id", isAdmin, updatePackage);
+
+router.delete("/delete/package/:id", isAdmin, deletePackage);
 
 export default router;
