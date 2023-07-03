@@ -3,9 +3,12 @@ import {
   deleteUser,
   editUser,
   login,
-  register
+  register,
+  getAllActiveDeliveries,
+  getAllDeliveries
 } from "../controllers/userController";
 import { isDelivery } from "../middleware/validateMiddleware";
+import { isAdmin } from "../middleware/validateMiddleware";
 const router: Router = express.Router();
 
 /**
@@ -193,5 +196,9 @@ router.put("/edit/:id", isDelivery, editUser);
  *            description: Error en servidor
  */
 router.delete("/delete/:id", isDelivery, deleteUser);
+
+router.get("/deliveries", isAdmin, getAllDeliveries);
+
+router.get("/deliveries/active", isAdmin, getAllActiveDeliveries);
 
 export default router;

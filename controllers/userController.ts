@@ -7,7 +7,6 @@ import {
   getAllUsers,
   getAllActiveUsers
 } from "../services/userServices";
-
 export async function register(req: Request, res: Response): Promise<Response> {
   try {
     const newUser = await createUser(req.body);
@@ -22,8 +21,8 @@ export async function login(req: Request, res: Response): Promise<Response> {
     const { email, password } = req.body;
     const { token, user } = await authenticateUser(email, password);
     return res.status(201).send({ token, user, message: "Session started" });
-  } catch (error) {
-    return res.status(401).send({ message: (error as Error).message });
+  } catch {
+    return res.status(500).send("Internal Server Error");
   }
 }
 
@@ -34,21 +33,30 @@ export async function editUser(req: Request, res: Response): Promise<Response> {
     return res
       .status(200)
       .send({ editedUser, message: "User edited successfully" });
-  } catch (error) {
-    return res.status(401).send({ message: (error as Error).message });
+  } catch {
+    return res.status(500).send("Internal Server Error");
   }
 }
 
-export async function deleteUser(
-  req: Request,
-  res: Response
-): Promise<Response> {
+export async function deleteUser(req: Request, res: Response) {
   try {
     const userId = req.params.id;
     await deleteOneUser(userId);
     return res.status(200).send({ message: "User deleted" });
+  } catch {
+    return res.status(500).send("Internal Server Error");
+  }
+}
+
+export async function getAllDeliveries(
+  req: Request,
+  res: Response
+): Promise<Response> {
+  try {
+    const allUsers = await getAllUsers();
+    return res.status(200).send({ allUsers, message: "All Users" });
   } catch (error) {
-    return res.status(401).send({ message: (error as Error).message });
+    return res.status(404).send({ message: (error as Error).message });
   }
 }
 
@@ -65,16 +73,3 @@ export async function getAllActiveDeliveries(
     return res.status(404).send({ message: (error as Error).message });
   }
 }
-
-export async function getAllDeliveries(
-  req: Request,
-  res: Response
-): Promise<Response> {
-  try {
-    const allUsers = await getAllUsers();
-    return res.status(200).send({ allUsers, message: "All Users" });
-  } catch (error) {
-    return res.status(404).send({ message: (error as Error).message });
-  }
-}
-

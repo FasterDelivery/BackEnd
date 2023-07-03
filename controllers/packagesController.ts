@@ -44,7 +44,6 @@ export async function editPackage(req: Request, res: Response) {
     return res.status(500).send({ message: "Internal Server Error" });
   }
 }
-
 export async function getAllDeliveryPackages(req: Request, res: Response) {
   try {
     const userId = req.params.id;
@@ -125,4 +124,3 @@ export async function deletePackage(req: Request, res: Response) {
     return res.status(500).send({ message: "Internal Server Error" });
   }
 }
-
