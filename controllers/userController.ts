@@ -52,6 +52,18 @@ export async function deleteUser(
   }
 }
 
+export async function getAllDeliveries(
+  req: Request,
+  res: Response
+): Promise<Response> {
+  try {
+    const allUsers = await getAllUsers();
+    return res.status(200).send({ allUsers, message: "All Users" });
+  } catch (error) {
+    return res.status(404).send({ message: (error as Error).message });
+  }
+}
+
 export async function getAllActiveDeliveries(
   req: Request,
   res: Response
@@ -61,18 +73,6 @@ export async function getAllActiveDeliveries(
     return res
       .status(200)
       .send({ allActiveUsers, message: "All active users" });
-  } catch (error) {
-    return res.status(404).send({ message: (error as Error).message });
-  }
-}
-
-export async function getAllDeliveries(
-  req: Request,
-  res: Response
-): Promise<Response> {
-  try {
-    const allUsers = await getAllUsers();
-    return res.status(200).send({ allUsers, message: "All Users" });
   } catch (error) {
     return res.status(404).send({ message: (error as Error).message });
   }
