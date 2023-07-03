@@ -11,6 +11,23 @@ export { User, Package };
  * components:
  *   schemas:
  *
+ *     bodyUsersRegisterPost:
+ *       type: object
+ *       properties:
+ *         email:
+ *           type: string
+ *         name:
+ *           type: string
+ *         lastname:
+ *           type: string
+ *         address:
+ *           type: string
+ *         phone:
+ *           type: number
+ *         password:
+ *           type: string
+ *         isAdmin:
+ *           type: boolean
  *     bodyUsersLoginPost:
  *       type: object
  *       properties:
@@ -18,4 +35,51 @@ export { User, Package };
  *           type: string
  *         password:
  *           type: string
+ *     bodyUserDelete:
+ *       type: object
+ *       properties:
+ *         id:
+ *           type: integer
+ *     bodyPackageSelect:
+ *       type: object
+ *       properties:
+ *         id:
+ *           type: integer
+ *     bodyPackageEdit:
+ *       type: object
+ *       properties:
+ *         packageId:
+ *           type: integer
+ *         userId:
+ *           type: integer
+ *     bodyPackageGet:
+ *       type: object
+ *       properties:
+ *         userId:
+ *           type: integer
+ *     bodyAdminAddPackagePost:
+ *       type: object
+ *       properties:
+ *         id:
+ *           type: integer
+ *         clientname:
+ *           type: string
+ *         image:
+ *           type: string
+ *         quantity:
+ *           type: integer
+ *         weight:
+ *           type: integer
+ *         deliveryday:
+ *           type: date
+ *         address:
+ *           type: string
+ *         status:
+ *           type: string
+ *     bodyAdminPut:
+ *       type: object
+ *       properties:
+ *         id:
+ *           type: integer
+
  */
