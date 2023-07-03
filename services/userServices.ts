@@ -45,6 +45,7 @@ export async function updateUser(userId: string, userData: IUser) {
       returning: true,
       individualHooks: true
     });
+    console.log(_);
     if (!editedUser) {
       throw new Error("Invalid credentials");
     }
