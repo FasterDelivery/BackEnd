@@ -19,7 +19,7 @@ describe("Get All Deliveries", () => {
   it("should get all deliveries", () => {
     cy.request({
       method: "GET",
-      url: "http://localhost:3001/api/admin/deliveries",
+      url: "http://localhost:3001/api/user/deliveries",
       headers: {
         Authorization: `Bearer ${adminToken}`,
         "Content-Type": "application/json"

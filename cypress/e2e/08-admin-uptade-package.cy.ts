@@ -14,7 +14,7 @@ describe("Update Package", () => {
 
     cy.request({
       method: "PUT",
-      url: `http://localhost:3001/api/admin/edit/package/${packageId}`,
+      url: `http://localhost:3001/api/packages/edit/package/${packageId}`,
       headers: {
         Authorization: `Bearer ${adminToken}`
       },

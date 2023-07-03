@@ -4,7 +4,7 @@ describe("Get All Packages", () => {
   it("should get all packages", () => {
     cy.request({
       method: "GET",
-      url: "http://localhost:3001/api/admin/packages",
+      url: "http://localhost:3001/api/packages/",
       headers: {
         Authorization: `Bearer ${adminToken}`,
         "Content-Type": "application/json"

@@ -7,7 +7,7 @@ describe("Delete Package", () => {
 
     cy.request({
       method: "DELETE",
-      url: `http://localhost:3001/api/admin/delete/package/${packageId}`,
+      url: `http://localhost:3001/api/packages/delete/package/${packageId}`,
       headers: {
         Authorization: `Bearer ${adminToken}`
       }
