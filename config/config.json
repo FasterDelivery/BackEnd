@@ -1,0 +1,26 @@
+{
+  "development": {
+    "username": "",
+    "password": "",
+    "database": "fastdelivery",
+    "host": "localhost",
+    "dialect": "postgres",
+    "logging": false
+  },
+  "test": {
+    "username": "",
+    "password": "",
+    "database": "fastdelivery_test",
+    "host": "localhost",
+    "dialect": "postgres",
+    "logging": false
+  },
+  "production": {
+    "username": "",
+    "password": "",
+    "database": "fastdelivery_production",
+    "host": "localhost",
+    "dialect": "postgres",
+    "logging": false
+  }
+}
