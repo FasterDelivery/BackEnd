@@ -3,57 +3,11 @@ import {
   createPackage,
   deletePackage,
   getAllActiveDeliveries,
-  getAllDeliveries,
   getAllPackages,
   updatePackage
 } from "../controllers/adminController";
 const router: Router = express.Router();
 import { isAdmin } from "../middleware/validateMiddleware";
-/**
- * @openapi
- * /api/admin/deliveries:
- *    get:
- *      tags:
- *      - admin
- *      summary: To view all
- *
- *      requestBody:
- *        content:
- *          application/json:
- *            schema:
- *              $ref: '#/components/schemas/bodyAdminGet'
- *        required: false
- *      responses:
- *        200:
- *          description: (OK) Created
- *          content:
- *            application/json:
- *              schema:
- *                $ref: '#/components/schemas/bodyAdminGet'
- *        400:
- *          $ref: '#/components/responses/BadRequest'
- *        401:
- *          $ref: '#/components/responses/Unauthorized'
- *        404:
- *          $ref: '#/components/responses/NotFound'
- *        500:
- *          $ref: '#/components/responses/ServerError'
- * components:
- *       responses:
- *
- *          Unauthorized:
- *            description: (Unauthorized) No hay autorizaciÃ³n para llamar al servicio
- *
- *          NotFound:
- *            description: (NotFound) No se encontrÃ³ informaciÃ³n
- *
- *          BadRequest:
- *            description: (Bad Request) Los datos enviados son incorrectos o hay datos obligatorios no enviados
- *
- *          ServerError:
- *            description: Error en servidor
- */
-router.get("/deliveries", isAdmin, getAllDeliveries);
 
 /**
  * @openapi
