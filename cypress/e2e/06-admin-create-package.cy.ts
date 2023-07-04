@@ -14,7 +14,7 @@ describe("Create Package", () => {
 
     cy.request({
       method: "POST",
-      url: "http://localhost:3001/api/admin/new/package",
+      url: "http://localhost:3001/api/packages/new",
       headers: {
         Authorization: `Bearer ${adminToken}`,
         "Content-Type": "application/json"

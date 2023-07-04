@@ -1,54 +1,37 @@
 import { Request, Response } from "express";
-import { generateToken } from "../config/token";
-import { User } from "../models";
-import { IPayload } from "../interfaces/IPayload";
-
+import {
+  authenticateUser,
+  createUser,
+  updateUser,
+  deleteOneUser,
+  getAllUsers,
+  getAllActiveUsers
+} from "../services/userServices";
 export async function register(req: Request, res: Response): Promise<Response> {
   console.log(req.body);
 
   try {
-    const newUser = await User.create(req.body);
-    if (!newUser) {
-      return res.status(400).send({ message: "Failed to create user" });
-    }
+    const newUser = await createUser(req.body);
     return res.status(201).send({ newUser });
   } catch (error) {
-    return res.status(500).send({ message: "Internal Server Error" });
+    return res.status(400).send({ message: (error as Error).message });
   }
 }
 
 export async function login(req: Request, res: Response): Promise<Response> {
   try {
-    const payload: IPayload = {
-      email: req.body.email,
-      password: req.body.password
-    };
-    const user = await User.findOne({ where: { email: payload.email } });
-    if (!user) {
-      return res.status(401).send("Invalid credentials");
-    }
-    payload.isAdmin = user.dataValues.isAdmin;
-    const isValid = await user.validatePassword(payload.password);
-    if (!isValid) return res.status(403).send("Unauthorized");
-    const token = generateToken(payload);
+    const { email, password } = req.body;
+    const { token, user } = await authenticateUser(email, password);
     return res.status(201).send({ token, user, message: "Session started" });
   } catch {
     return res.status(500).send("Internal Server Error");
   }
 }
 
-export async function editUser(req: Request, res: Response) {
+export async function editUser(req: Request, res: Response): Promise<Response> {
   try {
     const userId = req.params.id;
-    const [_, [editedUser]] = await User.update(req.body, {
-      where: { id: userId },
-      returning: true,
-      individualHooks: true
-    });
-    console.log(_);
-    if (!editedUser) {
-      return res.status(401).send("Invalid credentials");
-    }
+    const editedUser = await updateUser(userId, req.body);
     return res
       .status(200)
       .send({ editedUser, message: "User edited successfully" });
@@ -60,14 +43,35 @@ export async function editUser(req: Request, res: Response) {
 export async function deleteUser(req: Request, res: Response) {
   try {
     const userId = req.params.id;
-    const deletedUser: any = await User.destroy({
-      where: { id: userId }
-    });
-    if (!deletedUser) {
-      return res.status(401).send("Invalid credentials");
-    }
+    await deleteOneUser(userId);
     return res.status(200).send({ message: "User deleted" });
   } catch {
     return res.status(500).send("Internal Server Error");
+  }
+}
+
+export async function getAllDeliveries(
+  req: Request,
+  res: Response
+): Promise<Response> {
+  try {
+    const allUsers = await getAllUsers();
+    return res.status(200).send({ allUsers, message: "All Users" });
+  } catch (error) {
+    return res.status(404).send({ message: (error as Error).message });
+  }
+}
+
+export async function getAllActiveDeliveries(
+  req: Request,
+  res: Response
+): Promise<Response> {
+  try {
+    const allActiveUsers = await getAllActiveUsers();
+    return res
+      .status(200)
+      .send({ allActiveUsers, message: "All active users" });
+  } catch (error) {
+    return res.status(404).send({ message: (error as Error).message });
   }
 }

@@ -4,7 +4,7 @@ const swaggerUI = require("swagger-ui-express");
 const options = {
   definition: {
     openapi: "3.0.0",
-    info: { title: "Line-up web app", version: "1.0.0" }
+    info: { title: "FasterDelivery", version: "1.0.0" }
   },
   apis: ["./routes/*.ts", "./models/*.ts"]
 };
