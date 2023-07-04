@@ -8,6 +8,8 @@ import {
   getAllActiveUsers
 } from "../services/userServices";
 export async function register(req: Request, res: Response): Promise<Response> {
+  console.log(req.body);
+
   try {
     const newUser = await createUser(req.body);
     return res.status(201).send({ newUser });

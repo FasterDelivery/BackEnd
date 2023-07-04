@@ -131,3 +131,6 @@ dist
 
 #package-lock.json
 package-lock.json
+
+#videos cypress 
+*.mp4
