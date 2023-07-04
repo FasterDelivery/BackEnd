@@ -1,7 +1,6 @@
 import { Sequelize } from "sequelize";
 
 const dbName = process.env.POSTGRES_DB as string;
-
 const dbUser = process.env.POSTGRES_USER as string;
 const dbHost = process.env.DB_HOST;
 const dbPassword = process.env.POSTGRES_PASSWORD;
