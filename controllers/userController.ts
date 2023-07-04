@@ -5,7 +5,7 @@ import { IPayload } from "../interfaces/IPayload";
 
 export async function register(req: Request, res: Response): Promise<Response> {
   console.log(req.body);
-  
+
   try {
     const newUser = await User.create(req.body);
     if (!newUser) {
