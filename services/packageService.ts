@@ -38,6 +38,7 @@ export async function editPackageService(
     if (!editedPackage) {
       throw new Error("Package not found");
     }
+    console.log(_);
     return editedPackage;
   } catch (error) {
     throw new Error("Internal Server Error");
@@ -97,6 +98,7 @@ export async function updatePackageService(
     if (!editedPackage) {
       throw new Error("Package not found");
     }
+    console.log(_);
     return editedPackage;
   } catch (error) {
     throw new Error("Internal Server Error");
