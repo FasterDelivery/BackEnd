@@ -13,4 +13,18 @@ describe("Get All Packages", () => {
       expect(response.status).to.equal(200);
     });
   });
+
+  it("con not get all packages without token", () => {
+    cy.request({
+      method: "GET",
+      url: "http://localhost:3001/api/packages/",
+      failOnStatusCode: false,
+      headers: {
+        Authorization: `Bearer tokeninvalido`,
+        "Content-Type": "application/json"
+      }
+    }).then((response) => {
+      expect(response.status).to.equal(401);
+    });
+  });
 });

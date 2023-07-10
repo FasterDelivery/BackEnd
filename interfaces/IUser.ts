@@ -1,5 +1,5 @@
 export interface IUser {
-  id: number;
+  id?: number;
   name: string;
   lastname: string;
   email: string;
@@ -8,5 +8,5 @@ export interface IUser {
   password?: string;
   salt?: string;
   isAdmin: boolean;
-  status: string;
+  status?: string;
 }

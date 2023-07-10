@@ -1,5 +1,6 @@
 let adminToken;
-export { adminToken };
+let adminId;
+export { adminToken, adminId };
 
 describe("Get All Deliveries", () => {
   beforeEach(() => {
@@ -11,8 +12,11 @@ describe("Get All Deliveries", () => {
         password: "admin"
       }
     }).then((response) => {
+      cy.log(response.body);
       adminToken = response.body.token;
+      adminId = response.body.user.id;
       Cypress.env("adminToken", adminToken);
+      Cypress.env("adminId", adminId);
     });
   });
 

@@ -28,4 +28,27 @@ describe("Create Package", () => {
       cy.log("El resultado es:", newPackage);
     });
   });
+
+  it("can not create a new package whithout token", () => {
+    const packageData = {
+      clientname: "example",
+      quantity: 22232,
+      weight: 123,
+      address: "address example",
+      status: "active"
+    };
+
+    cy.request({
+      method: "POST",
+      url: "http://localhost:3001/api/packages/new",
+      failOnStatusCode: false,
+      headers: {
+        Authorization: `Bearer token invalido`,
+        "Content-Type": "application/json"
+      },
+      body: packageData
+    }).then((response) => {
+      expect(response.status).to.equal(401);
+    });
+  });
 });

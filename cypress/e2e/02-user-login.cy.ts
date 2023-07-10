@@ -19,4 +19,20 @@ describe("User Login", () => {
       userId = response.body.user.id;
     });
   });
+
+  it("Not login a user whit wrong password", () => {
+    cy.request({
+      method: "POST",
+      url: "http://localhost:3001/api/user/login",
+      failOnStatusCode: false,
+      body: {
+        email: "example@example.com",
+        password: "Password123456789"
+      }
+    }).then((response) => {
+      cy.log(response.body);
+      expect(response.status).to.equal(500);
+      expect(response.body).to.be.eq("Internal Server Error");
+    });
+  });
 });
