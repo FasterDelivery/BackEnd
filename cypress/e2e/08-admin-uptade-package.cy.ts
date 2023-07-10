@@ -21,7 +21,8 @@ describe("Update Package", () => {
       body: updatedPackageData
     }).then((response) => {
       expect(response.status).to.equal(200);
-      // expect(response.body).to.have.property("Package updated successfully");
+      cy.log(response.body)
+      expect(response.body.message).to.be.eq("Package updated successfully");
     });
   });
 });

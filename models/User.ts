@@ -19,7 +19,7 @@ class User extends Model<IUser> {
     return bcrypt.hash(password, salt);
   }
 
-  public validatePassword(password: string): Promise<boolean> {
+  public async validatePassword(password: string): Promise<boolean> {
     return this.hash(password, this.salt).then(
       (hash) => hash === this.password
     );
@@ -53,7 +53,7 @@ User.init(
       allowNull: false
     },
     phone: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.BIGINT,
       allowNull: false
     },
     password: {
