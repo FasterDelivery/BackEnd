@@ -30,12 +30,9 @@ describe("User Login", () => {
         password: "Password123456789"
       }
     }).then((response) => {
-      cy.log(response.body)
+      cy.log(response.body);
       expect(response.status).to.equal(500);
-      expect(response.body).to.be.eq("Internal Server Error")
+      expect(response.body).to.be.eq("Internal Server Error");
     });
   });
-
-
-
 });

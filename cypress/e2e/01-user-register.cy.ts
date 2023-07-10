@@ -16,7 +16,6 @@ describe("User Registration", () => {
     });
   });
 
-
   it("Failed to create a new user, error null fields", () => {
     cy.request({
       method: "POST",
@@ -32,10 +31,9 @@ describe("User Registration", () => {
       }
     }).then((response) => {
       expect(response.status).to.equal(400);
-      expect(response.body.message).to.be.eq("Failed to create user")
+      expect(response.body.message).to.be.eq("Failed to create user");
     });
   });
-
 
   it("Failed to create a user with the same email, error", () => {
     cy.request({
@@ -52,7 +50,7 @@ describe("User Registration", () => {
       }
     }).then((response) => {
       expect(response.status).to.equal(400);
-      expect(response.body.message).to.be.eq("Failed to create user")
+      expect(response.body.message).to.be.eq("Failed to create user");
     });
   });
 
@@ -71,8 +69,7 @@ describe("User Registration", () => {
       }
     }).then((response) => {
       expect(response.status).to.equal(400);
-      expect(response.body.message).to.be.eq("Failed to create user")
+      expect(response.body.message).to.be.eq("Failed to create user");
     });
   });
-
 });

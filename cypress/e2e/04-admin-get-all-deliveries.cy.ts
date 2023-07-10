@@ -12,11 +12,11 @@ describe("Get All Deliveries", () => {
         password: "admin"
       }
     }).then((response) => {
-      cy.log(response.body)
+      cy.log(response.body);
       adminToken = response.body.token;
-      adminId = response.body.user.id
+      adminId = response.body.user.id;
       Cypress.env("adminToken", adminToken);
-      Cypress.env("adminId", adminId)
+      Cypress.env("adminId", adminId);
     });
   });
 

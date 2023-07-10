@@ -15,7 +15,7 @@ export async function register(req: Request, res: Response): Promise<Response> {
     return res.status(201).send({ newUser });
   } catch (error) {
     console.log(error);
-    
+
     return res.status(400).send({ message: (error as Error).message });
   }
 }

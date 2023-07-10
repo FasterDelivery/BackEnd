@@ -1,4 +1,4 @@
-import { adminToken } from "./04-admin-get-all-deliveries.cy"
+import { adminToken } from "./04-admin-get-all-deliveries.cy";
 
 describe("Get All Active Deliveries", () => {
   it("should get all active deliveries", () => {
@@ -27,5 +27,4 @@ describe("Get All Active Deliveries", () => {
       expect(response.status).to.equal(401);
     });
   });
-
 });

@@ -32,9 +32,9 @@ describe("User Editing", () => {
         age: 30
       }
     }).then((response) => {
-      cy.log(response.body)
+      cy.log(response.body);
       expect(response.status).to.equal(401);
-      expect(response.body.message).to.be.eq("Invalid Token")
+      expect(response.body.message).to.be.eq("Invalid Token");
     });
   });
 
@@ -58,6 +58,4 @@ describe("User Editing", () => {
       expect(response.status).to.equal(500);
     });
   });
-  
-
 });

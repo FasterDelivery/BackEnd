@@ -14,7 +14,6 @@ describe("Get All Packages", () => {
     });
   });
 
-
   it("con not get all packages without token", () => {
     cy.request({
       method: "GET",
