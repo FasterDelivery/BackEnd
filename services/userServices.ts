@@ -7,8 +7,8 @@ export async function createUser(userData: IUser) {
   try {
     const newUser = await User.create(userData);
     return newUser;
-  } catch (error) {
-    throw new Error("Failed to create user");
+  } catch (error: any) {
+    throw new Error(error.original.message);
   }
 }
 
