@@ -52,34 +52,17 @@ export { User, Package };
  *           type: integer
  *         userId:
  *           type: integer
- *     bodyPackageGet:
+ *     bodyPackagesGet:
  *       type: object
  *       properties:
- *         userId:
- *           type: integer
- *     bodyAdminAddPackagePost:
- *       type: object
- *       properties:
- *         id:
- *           type: integer
  *         clientname:
- *           type: string
- *         image:
  *           type: string
  *         quantity:
  *           type: integer
  *         weight:
  *           type: integer
- *         deliveryday:
- *           type: date
  *         address:
  *           type: string
  *         status:
  *           type: string
- *     bodyAdminPut:
- *       type: object
- *       properties:
- *         id:
- *           type: integer
-
  */
