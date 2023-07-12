@@ -32,8 +32,8 @@ jobs:
           script: |
             cd /home/ubuntu/BackEnd
             git pull origin develop
-            echo "Hello World"
             killall node
-            npm start
+            npm start &
+            sleep 10
             exit 0
       
