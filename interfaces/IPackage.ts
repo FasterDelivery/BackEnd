@@ -1,7 +1,8 @@
+
 export interface IPackage {
   id?: number;
   clientname: string;
-  image?: string[];
+  image?: string;
   quantity: number;
   weight: number;
   deliveryday: Date;
@@ -9,3 +10,4 @@ export interface IPackage {
   status: string;
   UserId?: number;
 }
+

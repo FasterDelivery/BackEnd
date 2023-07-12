@@ -5,7 +5,7 @@ import { IPackage } from "../interfaces/IPackage";
 class Package extends Model<IPackage> {
   public id!: number;
   public clientname!: string;
-  public image!: string[];
+  public image!: string;
   public quantity!: number;
   public weight!: number;
   public deliveryday!: Date;
@@ -26,9 +26,9 @@ Package.init(
       autoIncrement: true
     },
     clientname: { type: DataTypes.STRING },
-    image: { type: DataTypes.ARRAY(DataTypes.STRING) },
+    image: { type: DataTypes.STRING },
     quantity: { type: DataTypes.INTEGER },
-    weight: { type: DataTypes.INTEGER },
+    weight: { type: DataTypes.FLOAT },
     deliveryday: { type: DataTypes.DATE },
     address: { type: DataTypes.STRING },
     status: { type: DataTypes.STRING },
