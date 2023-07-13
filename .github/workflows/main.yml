@@ -20,4 +20,19 @@ jobs:
       run: npm i
     - name: Run eslint
       run: npm run lint
-      
+  deploy-EC2:
+    runs-on: ubuntu-latest
+    steps:
+      - name: SSH into EC2 Instance and Run Docker Compose
+        uses: appleboy/ssh-action@master
+        with:
+          host: 44.201.112.1
+          username: ubuntu
+          key: ${{ secrets.EC2_SSH_PRIVATE_KEY }}
+          script: |
+            cd /home/ubuntu/BackEnd
+            git pull origin develop
+            sudo killall node
+            npm start &
+            sleep 15
+            exit
