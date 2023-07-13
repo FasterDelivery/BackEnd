@@ -34,8 +34,8 @@ jobs:
             cd /home/ubuntu/BackEnd 
             git pull origin develop
             ../kill-port.sh 3001
-            nohup npm start &
-
+            pm2 stop myapp
+            pm2 start npm --name "myapp" -- start
       - name: Set Deployment Status
         id: set-deployment-status
         run: echo "::set-output name=success::true"
