@@ -1,4 +1,3 @@
-
 export interface IPackage {
   id?: number;
   clientname: string;
@@ -10,4 +9,3 @@ export interface IPackage {
   status: string;
   UserId?: number;
 }
-

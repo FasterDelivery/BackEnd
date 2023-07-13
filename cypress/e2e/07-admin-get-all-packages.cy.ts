@@ -10,7 +10,7 @@ describe("Get All Packages", () => {
         "Content-Type": "application/json"
       }
     }).then((response) => {
-      cy.log(response.body)
+      cy.log(response.body);
       expect(response.status).to.equal(200);
     });
   });
