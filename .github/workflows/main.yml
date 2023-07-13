@@ -30,8 +30,8 @@ jobs:
           username: ubuntu
           key: ${{ secrets.EC2_SSH_PRIVATE_KEY }}
           script: |
-            cd /home/ubuntu/BackEnd
+            cd /home/ubuntu/BackEnd 
             git pull origin develop
             ../kill-port.sh 3001
             nohup npm start &
-            echo -e "\n" | exit
+            echo "::set-output name=success::Deployment completed successfully"
