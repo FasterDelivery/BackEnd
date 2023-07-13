@@ -111,15 +111,6 @@ const users: IUser[] = [
     status: "inactive"
   },
   {
-    name: "Carlin",
-    lastname: "Westoff",
-    email: "cwestoffc@reference.com",
-    address: "16 Dayton Circle",
-    phone: "9606347929",
-    password: "rA1}7y5Yx5J%(j",
-    status: "active"
-  },
-  {
     name: "Bearnard",
     lastname: "Albert",
     email: "balbertd@who.int",
