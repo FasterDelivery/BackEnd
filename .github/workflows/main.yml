@@ -32,7 +32,7 @@ jobs:
           script: |
             cd /home/ubuntu/BackEnd
             git pull origin develop
-            sudo killall node
-            npm start &
+            ../kill-port.sh 3001
+            npm start -- --no-tty &
             sleep 15
             exit
