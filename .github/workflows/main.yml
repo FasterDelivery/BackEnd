@@ -35,7 +35,8 @@ jobs:
             git pull origin develop
             ../kill-port.sh 3001
             nohup npm start &
-            sleep 10
-            echo "::set-output name=success::Deployment completed successfully"
-            exit
+
+      - name: Set Deployment Status
+        id: set-deployment-status
+        run: echo "::set-output name=success::true"
           
