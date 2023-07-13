@@ -21,6 +21,7 @@ jobs:
     - name: Run eslint
       run: npm run lint
   deploy-EC2:
+    needs: build
     runs-on: ubuntu-latest
     steps:
       - name: SSH into EC2 Instance and Start Server
@@ -34,4 +35,7 @@ jobs:
             git pull origin develop
             ../kill-port.sh 3001
             nohup npm start &
+            sleep 10
             echo "::set-output name=success::Deployment completed successfully"
+            exit
+          
