@@ -1,7 +1,7 @@
 import { validateToken } from "../config/token";
 
 export async function isAdmin(req: any, res: any, next: any) {
-  const token: string | undefined = req.headers.authorization?.split(" ")[1];
+  const token: string | undefined = req.headers.authorization ? req.headers.authorization.split(" ")[1]: undefined;  
   if (token) {
     try {
       const decodedUser: any = validateToken(token);
@@ -18,7 +18,7 @@ export async function isAdmin(req: any, res: any, next: any) {
 }
 
 export async function isDelivery(req: any, res: any, next: any) {
-  const token: string | undefined = req.headers.authorization?.split(" ")[1];
+  const token: string | undefined = req.headers.authorization ? req.headers.authorization.split(" ")[1]: undefined;
   if (token) {
     try {
       const decodedUser: any = validateToken(token);
