@@ -7,6 +7,6 @@ export interface IUser {
   phone: string;
   password?: string;
   salt?: string;
-  isAdmin: boolean;
+  isAdmin?: boolean;
   status?: string;
 }
