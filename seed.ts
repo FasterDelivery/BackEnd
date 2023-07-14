@@ -1,7 +1,7 @@
 import { createAllPackages } from "./utils/packages"
 import { createAllUsers } from "./utils/users"
 
-createAllPackages()
-createAllUsers()
+
+createAllUsers().then(() => createAllPackages())
 
 

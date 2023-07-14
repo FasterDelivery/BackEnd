@@ -11,7 +11,7 @@ class Package extends Model<IPackage> {
   public deliveryday!: Date;
   public address!: string;
   public status!: string;
-  public UserId!: number;
+
 
   static findByName(clientname: string) {
     return Package.findOne({ where: { clientname } });
@@ -32,7 +32,7 @@ Package.init(
     deliveryday: { type: DataTypes.DATE },
     address: { type: DataTypes.STRING },
     status: { type: DataTypes.STRING },
-    UserId: { type: DataTypes.INTEGER }
+
   },
   { sequelize: db, modelName: "package" }
 );
