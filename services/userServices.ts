@@ -102,3 +102,15 @@ export async function getAllActiveUsers() {
     throw new Error("Internal Server Error");
   }
 }
+
+export async function getUser(email: string) {
+  try {
+    const user = await User.findOne({ where: { email: email } });
+    if (!user) {
+      throw new Error("No user found");
+    }
+    return user; // Return the user object when found
+  } catch (error) {
+    throw new Error("Error getting user");
+  }
+}

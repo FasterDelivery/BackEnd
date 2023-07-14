@@ -35,7 +35,7 @@ export async function editPackage(req: Request, res: Response) {
 
 export async function getAllDeliveryPackages(req: Request, res: Response) {
   try {
-    const userId = req.params.id;
+    const userId = req.params.idUser;
     const packages = await getAllDeliveryPackagesService(userId);
     return res.status(200).send({ packages, message: "All packages" });
   } catch (error) {
