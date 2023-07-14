@@ -85,13 +85,12 @@ User.addHook("beforeCreate", async (user: User) => {
 });
 
 User.addHook("beforeUpdate", async (user: User) => {
-  if (user.changed('password')) {
+  if (user.changed("password")) {
     const salt = bcrypt.genSaltSync(9);
     user.salt = salt;
     const hash = await bcrypt.hash(user.password, salt);
     user.password = hash;
   }
 });
-
 
 export default User;

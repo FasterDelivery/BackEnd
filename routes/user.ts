@@ -6,7 +6,8 @@ import {
   register,
   getAllActiveDeliveries,
   getAllDeliveries,
-  getSession
+  getSession,
+  recover
 } from "../controllers/userController";
 import { isDelivery, validateAuth } from "../middleware/validateMiddleware";
 import { isAdmin } from "../middleware/validateMiddleware";
@@ -270,5 +271,7 @@ router.get("/deliveries", isAdmin, getAllDeliveries);
 router.get("/deliveries/active", isAdmin, getAllActiveDeliveries);
 
 router.get("/me", validateAuth, getSession);
+
+router.post("/recover", recover);
 
 export default router;
