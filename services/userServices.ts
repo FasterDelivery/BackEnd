@@ -1,5 +1,5 @@
 import { User } from "../models";
-import { generateToken } from "../config/token";
+import { generateToken,validateToken } from "../config/token";
 import { IPayload } from "../interfaces/IPayload";
 import { IUser } from "../interfaces/IUser";
 
@@ -100,5 +100,17 @@ export async function getAllActiveUsers() {
     return allActiveUsers;
   } catch (error) {
     throw new Error("Internal Server Error");
+  }
+}
+
+export async function getUser(email: string) {
+  try {
+    const user = await User.findOne({ where: { email: email } });
+    if (!user) {
+      throw new Error('No user found');
+    }
+    return user; // Return the user object when found
+  } catch (error) {
+    throw new Error('Error getting user');
   }
 }

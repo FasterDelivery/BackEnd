@@ -5,8 +5,10 @@ import {
   updateUser,
   deleteOneUser,
   getAllUsers,
-  getAllActiveUsers
+  getAllActiveUsers,
+  getUser
 } from "../services/userServices";
+import { IUser } from "../interfaces/IUser";
 export async function register(req: Request, res: Response): Promise<Response> {
   try {
     const newUser = await createUser(req.body);
@@ -75,3 +77,15 @@ export async function getAllActiveDeliveries(
     return res.status(404).send({ message: (error as Error).message });
   }
 }
+
+export async function getSession(req: Request, res: Response) {
+  try {
+    const user = await getUser(req.body.email);
+    res.send(user)
+    
+  } catch (error) {
+    return res.status(404).send({ message: (error as Error).message });
+  }
+  
+  }
+

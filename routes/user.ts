@@ -5,9 +5,10 @@ import {
   login,
   register,
   getAllActiveDeliveries,
-  getAllDeliveries
+  getAllDeliveries,
+  getSession
 } from "../controllers/userController";
-import { isDelivery } from "../middleware/validateMiddleware";
+import { isDelivery, validateAuth } from "../middleware/validateMiddleware";
 import { isAdmin } from "../middleware/validateMiddleware";
 const router: Router = express.Router();
 
@@ -267,5 +268,7 @@ router.get("/deliveries", isAdmin, getAllDeliveries);
  *            description: Error en servidor
  */
 router.get("/deliveries/active", isAdmin, getAllActiveDeliveries);
+
+router.get("/me", validateAuth,getSession)
 
 export default router;
