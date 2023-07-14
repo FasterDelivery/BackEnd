@@ -269,6 +269,6 @@ router.get("/deliveries", isAdmin, getAllDeliveries);
  */
 router.get("/deliveries/active", isAdmin, getAllActiveDeliveries);
 
-router.get("/me", validateAuth,getSession)
+router.get("/me", validateAuth, getSession);
 
 export default router;

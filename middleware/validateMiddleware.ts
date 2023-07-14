@@ -38,17 +38,17 @@ export async function isDelivery(req: any, res: any, next: any) {
 
 export async function validateAuth(req: any, res: any, next: any) {
   const token =
-  req.headers.authorization && req.headers.authorization.split(" ")[1];
-if (!token) return res.sendStatus(401);
-if (token) {
-  try {
-    const decodedUser: any = validateToken(token);
-    if (decodedUser) {
-      req.body = decodedUser.payload
-      next()
+    req.headers.authorization && req.headers.authorization.split(" ")[1];
+  if (!token) return res.sendStatus(401);
+  if (token) {
+    try {
+      const decodedUser: any = validateToken(token);
+      if (decodedUser) {
+        req.body = decodedUser.payload;
+        next();
+      }
+    } catch {
+      return res.status(401).send({ message: "Invalid Token" });
     }
-  } catch {
-    return res.status(401).send({ message: "Invalid Token" });
   }
-}
 }
