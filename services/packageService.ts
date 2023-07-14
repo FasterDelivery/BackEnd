@@ -17,7 +17,7 @@ export async function selectPackagesService(
     if (packageIds.length !== packages.length) {
       throw new Error("Some packages do not exist");
     }
-    await Package.update({ UserId: user.id }, { where: { id: packageIds } });
+    await Package.update({ userId: user.id }, { where: { id: packageIds } });
     return "All packages selected";
   } catch (error) {
     throw new Error("Internal Server Error");
@@ -31,7 +31,7 @@ export async function editPackageService(
 ) {
   try {
     const [_, [editedPackage]] = await Package.update(packageData, {
-      where: { id: packageId, UserId: userId },
+      where: { id: packageId, userId: userId },
       returning: true,
       individualHooks: true
     });
@@ -49,7 +49,7 @@ export async function getAllDeliveryPackagesService(userId: string) {
   try {
     const packages: Package[] = await Package.findAll({
       where: {
-        UserId: userId
+        userId: userId
       }
     });
     if (!packages[0]) {

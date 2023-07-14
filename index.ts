@@ -29,7 +29,7 @@ app.use((err: Error, req: Request, res: Response, next: NextFunction): void => {
   res.status(500).send("Internal Server Error");
 });
 
-db.sync({ force: true }).then(() => {
+db.sync({ force: false }).then(() => {
   app.listen(3001, () => {
     console.log(`Server listening on port 3001`);
     swaggerDocs(app, 3001);
