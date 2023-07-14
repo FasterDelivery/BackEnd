@@ -7,5 +7,5 @@ export interface IPackage {
   deliveryday: Date;
   address: string;
   status: string;
-  UserId?: number;
+  userId?: number;
 }
