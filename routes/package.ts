@@ -6,7 +6,10 @@ import {
   selectPackages,
   createPackage,
   deletePackage,
-  updatePackage
+  updatePackage,
+  getDeliveryPackages,
+  viewPackage,
+  historialPackages
 } from "../controllers/packagesController";
 
 const router: Router = express.Router();
@@ -103,6 +106,7 @@ router.put("/:id/select/packages", isDelivery, selectPackages);
  */
 router.put("/:idUser/edit/package/:idPackage", isDelivery, editPackage);
 
+router.get("/:idUser/package/:idPackage", isDelivery, viewPackage);
 /**
  * @openapi
  * /api/package/{idUser}/packages:
@@ -147,7 +151,54 @@ router.put("/:idUser/edit/package/:idPackage", isDelivery, editPackage);
  *          ServerError:
  *            description: Error en servidor
  */
-router.get("/:idUser/packages", isDelivery, getAllPackages);
+router.get("/packages", isDelivery, getAllPackages); //pendientes
+
+/**
+ * @openapi
+ * /api/package/{idUser}/deliveryPackages:
+ *    get:
+ *      tags:
+ *      - packages
+ *      summary: To view a package selected by user
+ *
+ *      requestBody:
+ *        content:
+ *          application/json:
+ *            schema:
+ *              $ref: '#/components/schemas/bodyPackageGet'
+ *        required: true
+ *      responses:
+ *        200:
+ *          description: (OK) Created
+ *          content:
+ *            application/json:
+ *              schema:
+ *                $ref: '#/components/schemas/bodyPackageGet'
+ *        400:
+ *          $ref: '#/components/responses/BadRequest'
+ *        401:
+ *          $ref: '#/components/responses/Unauthorized'
+ *        404:
+ *          $ref: '#/components/responses/NotFound'
+ *        500:
+ *          $ref: '#/components/responses/ServerError'
+ * components:
+ *       responses:
+ *
+ *          Unauthorized:
+ *            description: (Unauthorized) No hay autorizaciÃ³n para llamar al servicio
+ *
+ *          NotFound:
+ *            description: (NotFound) No se encontrÃ³ informaciÃ³n
+ *
+ *          BadRequest:
+ *            description: (Bad Request) Los datos enviados son incorrectos o hay datos obligatorios no enviados
+ *
+ *          ServerError:
+ *            description: Error en servidor
+ */
+
+router.get("/:idUser/deliveryPackages", isDelivery, getDeliveryPackages);
 
 /**
  * @openapi
@@ -228,7 +279,7 @@ router.post("/new", isAdmin, createPackage);
  *          ServerError:
  *            description: Error en servidor
  */
-router.get("/", isAdmin, getAllPackages);
+router.get("/", isAdmin, getAllPackages); //que muestre todos los paquetes
 /**
  * @openapi
  * /api/package/edit/package/{id}:
@@ -318,4 +369,5 @@ router.put("/edit/package/:id", isAdmin, updatePackage);
  */
 router.delete("/delete/package/:id", isAdmin, deletePackage);
 
+router.get("/myPackages/:idUser", isDelivery, historialPackages);
 export default router;

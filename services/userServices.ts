@@ -102,3 +102,12 @@ export async function getAllActiveUsers() {
     throw new Error("Internal Server Error");
   }
 }
+
+export async function viewDetails(userId: string) {
+  try {
+    const delivery = await User.findByPk(userId);
+    return delivery;
+  } catch (error) {
+    throw new Error("Internal Server Error");
+  }
+}

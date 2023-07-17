@@ -5,7 +5,8 @@ import {
   login,
   register,
   getAllActiveDeliveries,
-  getAllDeliveries
+  getAllDeliveries,
+  viewDeliveryDetails
 } from "../controllers/userController";
 import { isDelivery } from "../middleware/validateMiddleware";
 import { isAdmin } from "../middleware/validateMiddleware";
@@ -267,5 +268,7 @@ router.get("/deliveries", isAdmin, getAllDeliveries);
  *            description: Error en servidor
  */
 router.get("/deliveries/active", isAdmin, getAllActiveDeliveries);
+
+router.get("details/:id", isAdmin, viewDeliveryDetails);
 
 export default router;

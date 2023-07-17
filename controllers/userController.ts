@@ -5,7 +5,8 @@ import {
   updateUser,
   deleteOneUser,
   getAllUsers,
-  getAllActiveUsers
+  getAllActiveUsers,
+  viewDetails
 } from "../services/userServices";
 export async function register(req: Request, res: Response): Promise<Response> {
   try {
@@ -71,6 +72,20 @@ export async function getAllActiveDeliveries(
     return res
       .status(200)
       .send({ allActiveUsers, message: "All active users" });
+  } catch (error) {
+    return res.status(404).send({ message: (error as Error).message });
+  }
+}
+export async function viewDeliveryDetails(
+  req: Request,
+  res: Response
+): Promise<Response> {
+  try {
+    const userId = req.params.id;
+    const deliveryDetails = await viewDetails(userId);
+    return res
+      .status(200)
+      .send({ deliveryDetails, message: "Delivery details" });
   } catch (error) {
     return res.status(404).send({ message: (error as Error).message });
   }

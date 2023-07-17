@@ -45,6 +45,23 @@ export async function editPackageService(
   }
 }
 
+export async function viewPackageService(packageId: number, userId: number) {
+  try {
+    const myPackages = await Package.findOne({
+      where: {
+        UserId: userId,
+        id: packageId
+      }
+    });
+    if (!myPackages) {
+      throw new Error("Packages not found");
+    }
+    return myPackages;
+  } catch (error) {
+    throw new Error("Internal Server Error");
+  }
+}
+
 export async function getAllDeliveryPackagesService(userId: string) {
   try {
     const packages: Package[] = await Package.findAll({
@@ -63,7 +80,28 @@ export async function getAllDeliveryPackagesService(userId: string) {
 
 export async function getAllPackagesService() {
   try {
-    const allPackages = await Package.findAll();
+    const allPackages = await Package.findAll({
+      where: {
+        status: "pendiente"
+      }
+    });
+    if (!allPackages) {
+      throw new Error("Packages not found");
+    }
+    return allPackages;
+  } catch (error) {
+    throw new Error("Internal Server Error");
+  }
+}
+
+export async function getDeliveryPackagesService(id: string) {
+  try {
+    const allPackages = await Package.findAll({
+      where: {
+        UserId: id,
+        status: "en curso"
+      }
+    });
     if (!allPackages) {
       throw new Error("Packages not found");
     }
@@ -116,5 +154,14 @@ export async function deletePackageService(packageId: string) {
     return "Package deleted";
   } catch (error) {
     throw new Error("Internal Server Error");
+  }
+}
+
+export async function historialPackagesService(userId: string) {
+  try {
+    const packages = await Package.findAll({ where: { id: userId } });
+    return packages;
+  } catch (error) {
+    throw new Error("Internal server error");
   }
 }
