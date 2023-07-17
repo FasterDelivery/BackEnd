@@ -6,6 +6,7 @@ import {
   deleteOneUser,
   getAllUsers,
   getAllActiveUsers,
+  viewDetails,
   getUser,
   sendMail
 } from "../services/userServices";
@@ -77,6 +78,17 @@ export async function getAllActiveDeliveries(
     return res.status(404).send({ message: (error as Error).message });
   }
 }
+
+export async function viewDeliveryDetails(
+  req: Request,
+  res: Response
+): Promise<Response> {
+  try {
+    const userId = req.params.id;
+    const deliveryDetails = await viewDetails(userId);
+    return res
+      .status(200)
+      .send({ deliveryDetails, message: "Delivery details" });
 
 export async function getSession(req: Request, res: Response) {
   try {

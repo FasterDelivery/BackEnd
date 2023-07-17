@@ -104,6 +104,15 @@ export async function getAllActiveUsers() {
   }
 }
 
+export async function viewDetails(userId: string) {
+  try {
+    const delivery = await User.findByPk(userId);
+    return delivery;
+  } catch (error) {
+    throw new Error("Internal Server Error");
+  }
+}
+
 export async function getUser(email: string) {
   try {
     const user = await User.findOne({ where: { email: email } });
@@ -156,4 +165,5 @@ export async function sendMail(email: string): Promise<string> {
     throw error;
   }
 }
+
 
