@@ -204,7 +204,6 @@ router.get("/:idUser/deliveryPackages", isDelivery, getDeliveryPackages);
 
 router.get("/:idUser/packages", isDelivery, getAllDeliveryPackages);
 
-
 /**
  * @openapi
  * /api/package/new:

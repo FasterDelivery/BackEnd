@@ -49,7 +49,7 @@ export async function viewPackageService(packageId: number, userId: number) {
   try {
     const myPackages = await Package.findOne({
       where: {
-        UserId: userId,
+        userId: userId,
         id: packageId
       }
     });
@@ -98,7 +98,7 @@ export async function getDeliveryPackagesService(id: string) {
   try {
     const allPackages = await Package.findAll({
       where: {
-        UserId: id,
+        userId: id,
         status: "en curso"
       }
     });

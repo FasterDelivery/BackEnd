@@ -18,7 +18,7 @@ Djurada.init(
       primaryKey: true,
       autoIncrement: true
     },
-    dayDeclaracionJurada: { type: DataTypes.DATE },
+    dayDeclaracionJurada: { type: DataTypes.DATE }
   },
   { sequelize: db, modelName: "djurada" }
 );

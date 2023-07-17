@@ -9,7 +9,6 @@ import {
   viewDeliveryDetails,
   getSession,
   recover
-
 } from "../controllers/userController";
 import { isDelivery, validateAuth } from "../middleware/validateMiddleware";
 import { isAdmin } from "../middleware/validateMiddleware";

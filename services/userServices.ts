@@ -2,7 +2,7 @@ import { User } from "../models";
 import { generateToken } from "../config/token";
 import { IPayload } from "../interfaces/IPayload";
 import { IUser } from "../interfaces/IUser";
-import nodemailer,{Transporter} from "nodemailer";
+import nodemailer, { Transporter } from "nodemailer";
 
 export async function createUser(userData: IUser) {
   try {
@@ -126,44 +126,41 @@ export async function getUser(email: string) {
 }
 
 export async function sendMail(email: string): Promise<string> {
-
   const user = await User.findOne({ where: { email } });
-    if (!user) {
-      throw new Error("User not found");
-    }
-    
-    const payload: IPayload = {
-      email: user.email,
-      password: user.password,
-      isAdmin: user.isAdmin
-    };
+  if (!user) {
+    throw new Error("User not found");
+  }
+
+  const payload: IPayload = {
+    email: user.email,
+    password: user.password,
+    isAdmin: user.isAdmin
+  };
 
   const token = generateToken(payload);
 
   const transporter: Transporter = nodemailer.createTransport({
-    host: 'smtp.gmail.com',
+    host: "smtp.gmail.com",
     port: 587,
     secure: false, // Set to true if using a secure connection (e.g., SSL/TLS)
     auth: {
       user: process.env.GMAIL,
-      pass: process.env.GMAILPASSWORD,
-    },
+      pass: process.env.GMAILPASSWORD
+    }
   });
 
-   const mailOptions = {
-    from: 'fastdeliveryrecovery@gmail.com',
+  const mailOptions = {
+    from: "fastdeliveryrecovery@gmail.com",
     to: email,
-    subject: 'Reestablecer Contraseña',
-    text: `Hacé click en la siguiente liga para reestablecer tu contraseña http://localhost:3000/cambiar?token=${token}`,
+    subject: "Reestablecer Contraseña",
+    text: `Hacé click en la siguiente liga para reestablecer tu contraseña http://localhost:3000/cambiar?token=${token}`
   };
 
   try {
     const info = await transporter.sendMail(mailOptions);
     return info.response;
   } catch (error) {
-    console.error('Error sending email:', error);
+    console.error("Error sending email:", error);
     throw error;
   }
 }
-
-
