@@ -20,3 +20,23 @@ jobs:
       run: npm i
     - name: Run eslint
       run: npm run lint
+  deploy-EC2:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: SSH into EC2 Instance and Start Server
+        uses: appleboy/ssh-action@master
+        with:
+          host: 44.201.112.1
+          username: ubuntu
+          key: ${{ secrets.EC2_SSH_PRIVATE_KEY }}
+          script: |
+            cd /home/ubuntu/BackEnd 
+            git pull origin develop
+            ../kill-port.sh 3001
+            pm2 stop myapp
+            pm2 start npm --name "myapp" -- start
+      - name: Set Deployment Status
+        id: set-deployment-status
+        run: echo "::set-output name=success::true"
+          

@@ -1,8 +1,12 @@
 import User from "./User";
 import Package from "./Package";
+import Djurada from "./Djurada"
 
 User.hasMany(Package);
 Package.belongsTo(User);
+
+User.hasMany(Djurada)
+Djurada.belongsTo(User)
 
 export { User, Package };
 

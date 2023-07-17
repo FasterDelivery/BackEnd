@@ -6,9 +6,12 @@ import {
   register,
   getAllActiveDeliveries,
   getAllDeliveries,
-  viewDeliveryDetails
+  viewDeliveryDetails,
+  getSession,
+  recover
+
 } from "../controllers/userController";
-import { isDelivery } from "../middleware/validateMiddleware";
+import { isDelivery, validateAuth } from "../middleware/validateMiddleware";
 import { isAdmin } from "../middleware/validateMiddleware";
 const router: Router = express.Router();
 
@@ -270,5 +273,9 @@ router.get("/deliveries", isAdmin, getAllDeliveries);
 router.get("/deliveries/active", isAdmin, getAllActiveDeliveries);
 
 router.get("details/:id", isAdmin, viewDeliveryDetails);
+
+router.get("/me", validateAuth, getSession);
+
+router.post("/recover", recover);
 
 export default router;

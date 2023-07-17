@@ -3,6 +3,7 @@ import { isAdmin, isDelivery } from "../middleware/validateMiddleware";
 import {
   editPackage,
   getAllPackages,
+  getAllDeliveryPackages,
   selectPackages,
   createPackage,
   deletePackage,
@@ -151,6 +152,7 @@ router.get("/:idUser/package/:idPackage", isDelivery, viewPackage);
  *          ServerError:
  *            description: Error en servidor
  */
+
 router.get("/packages", isDelivery, getAllPackages); //pendientes
 
 /**
@@ -199,6 +201,9 @@ router.get("/packages", isDelivery, getAllPackages); //pendientes
  */
 
 router.get("/:idUser/deliveryPackages", isDelivery, getDeliveryPackages);
+
+router.get("/:idUser/packages", isDelivery, getAllDeliveryPackages);
+
 
 /**
  * @openapi
