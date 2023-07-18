@@ -5,6 +5,8 @@ import router from "./routes/index";
 import db from "./config/db";
 import { User, Package } from "./models";
 import cors from "cors";
+import https from "https";
+import fs from "fs";
 const { swaggerDocs } = require("./swagger/swagger");
 
 const app = express();
@@ -13,10 +15,13 @@ dotenv.config();
 
 app.use(
   cors({
+    origin: "*", // Allow requests from any domain
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true,
-    origin: true
   })
 );
+
 app.use(bodyParser.json());
 app.use("/api", router);
 
@@ -30,8 +35,13 @@ app.use((err: Error, req: Request, res: Response, next: NextFunction): void => {
 });
 
 db.sync({ force: false }).then(() => {
-  app.listen(3001, () => {
-    console.log(`Server listening on port 3001`);
+  const options = {
+    key: fs.readFileSync("/etc/ssl/private/nginx-selfsigned.key"),
+    cert: fs.readFileSync("/etc/ssl/certs/nginx-selfsigned.crt"),
+  };
+
+  https.createServer(options, app).listen(3001, () => {
+    console.log(`Server listening on port 3001 (HTTPS)`);
     swaggerDocs(app, 3001);
   });
 });
