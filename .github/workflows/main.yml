@@ -27,7 +27,7 @@ jobs:
       - name: SSH into EC2 Instance and Start Server
         uses: appleboy/ssh-action@master
         with:
-          host: 44.201.112.1
+          host: 3.91.204.112
           username: ubuntu
           key: ${{ secrets.EC2_SSH_PRIVATE_KEY }}
           script: |
