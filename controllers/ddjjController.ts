@@ -9,8 +9,7 @@ export async function firmaDeclaracionJurada(
   res: Response
 ): Promise<Response> {
   try {
-    const ddjj = await createDeclaracionJurada(req.body);
-
+    await createDeclaracionJurada(req.body);
     return res.status(201).send({ message: "Declaracion Jurada aproba OK!" });
   } catch {
     return res.status(500).send("No se aprobo la Declaracion Jurada");

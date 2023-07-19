@@ -6,6 +6,6 @@ const router: Router = express.Router();
 
 router.post("/", firmaDeclaracionJurada);
 
-router.get("/daydeclaracion", getDayDeclaracion)
+router.get("/daydeclaracion", getDayDeclaracion);
 
 export default router;
