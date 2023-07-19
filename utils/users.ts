@@ -3,12 +3,22 @@ import { User } from "../models";
 
 const users: IUser[] = [
   {
-    name: "Tanitansy",
-    lastname: "Crookshank",
-    email: "tcrookshank0@imageshack.us",
+    name: "Administrador",
+    lastname: "Administrador",
+    email: "admin@admin.com",
     address: "672 Haas Parkway",
     phone: "3648104729",
-    password: 'mY3,}"840!w6a&bY',
+    password: "admin",
+    status: "active"
+  },
+
+  {
+    name: "Tanitansy",
+    lastname: "Crookshank",
+    email: "user@user.com",
+    address: "672 Haas Parkway",
+    phone: "3648104729",
+    password: "123456",
     status: "active"
   },
   {

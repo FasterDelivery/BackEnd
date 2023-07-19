@@ -10,6 +10,7 @@ import {
   getUser,
   sendMail
 } from "../services/userServices";
+
 export async function register(req: Request, res: Response): Promise<Response> {
   try {
     const newUser = await createUser(req.body);
