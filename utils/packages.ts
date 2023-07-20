@@ -13,7 +13,7 @@ const packageData: any = [
   },
   {
     clientname: "Noelyn Bucky",
-    image: "http://dummyimage.com/228x100.png/cc0000/ffffff",
+    image: "",
     quantity: 9,
     weight: 15.775,
     address: "296 Harper Hill",
@@ -2254,7 +2254,7 @@ const packageData: any = [
   },
   {
     clientname: "Bil Huttley",
-    image: "http://dummyimage.com/116x100.png/dddddd/000000",
+    image: "",
     quantity: 8,
     weight: 23.651,
     address: "62147 Oriole Parkway",
@@ -3073,7 +3073,7 @@ const packageData: any = [
   },
   {
     clientname: "Estella Beams",
-    image: "http://dummyimage.com/133x100.png/cc0000/ffffff",
+    image: "",
     quantity: 9,
     weight: 39.402,
     address: "19974 Rieder Place",
@@ -3523,7 +3523,7 @@ const packageData: any = [
   },
   {
     clientname: "Annalise Ilchenko",
-    image: "http://dummyimage.com/240x100.png/dddddd/000000",
+    image: "",
     quantity: 5,
     weight: 13.83,
     address: "5 Merrick Place",
@@ -3595,7 +3595,7 @@ const packageData: any = [
   },
   {
     clientname: "Hetty Osanne",
-    image: "http://dummyimage.com/242x100.png/cc0000/ffffff",
+    image: "",
     quantity: 3,
     weight: 62.515,
     address: "9 Scoville Place",
@@ -3685,7 +3685,7 @@ const packageData: any = [
   },
   {
     clientname: "Shelby Imort",
-    image: "http://dummyimage.com/240x100.png/dddddd/000000",
+    image: "",
     quantity: 4,
     weight: 6.676,
     address: "04 Bayside Alley",
@@ -4135,7 +4135,7 @@ const packageData: any = [
   },
   {
     clientname: "Brooke Girault",
-    image: "http://dummyimage.com/106x100.png/cc0000/ffffff",
+    image: "",
     quantity: 3,
     weight: 38.188,
     address: "5 Daystar Trail",

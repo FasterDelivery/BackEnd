@@ -26,7 +26,7 @@ app.use(bodyParser.json());
 app.use("/api", router);
 
 app.get("/", (req: Request, res: Response): void => {
-  res.send("Hola Mundo");
+  res.send("Hello World");
 });
 
 app.use((err: Error, req: Request, res: Response, next: NextFunction): void => {

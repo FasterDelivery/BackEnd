@@ -5,9 +5,12 @@ import { IDjurada } from "../interfaces/IDjurada";
 class Djurada extends Model<IDjurada> {
   public id!: number;
   public dayDeclaracionJurada!: Date;
+  public bebidasAlcoholicas!: string;
+  public medicamentos!: string;
+  public estadoEmocional!: string;
 
-  static findByName(dayDeclaracionJurada: Date) {
-    return Djurada.findOne({ where: { dayDeclaracionJurada } });
+  static findByName(userId: number) {
+    return Djurada.findOne({ where: { userId } });
   }
 }
 
@@ -18,8 +21,12 @@ Djurada.init(
       primaryKey: true,
       autoIncrement: true
     },
-    dayDeclaracionJurada: { type: DataTypes.DATE }
+    dayDeclaracionJurada: { type: DataTypes.DATE },
+    bebidasAlcoholicas: { type: DataTypes.STRING },
+    medicamentos: { type: DataTypes.STRING },
+    estadoEmocional: { type: DataTypes.STRING }
   },
+
   { sequelize: db, modelName: "djurada" }
 );
 
