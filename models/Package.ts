@@ -1,7 +1,7 @@
 import { Model, DataTypes } from "sequelize";
 import db from "../config/db";
 import { IPackage } from "../interfaces/IPackage";
-import  getCoordinates from "../utils/coordinates/index"
+import getCoordinates from "../utils/coordinates/index";
 
 class Package extends Model<IPackage> {
   public id!: number;
@@ -73,7 +73,6 @@ Package.beforeCreate(async (paquete) => {
     paquete.lat = lat;
     paquete.lng = lng;
   } else console.log(paquete.dataValues);
-  ;
 });
 
 export default Package;
