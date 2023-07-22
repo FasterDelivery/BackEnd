@@ -5,7 +5,15 @@ export interface IPackage {
   quantity: number;
   weight: number;
   deliveryday: Date;
-  address: string;
+  street: string;
+  number: number;
+  city: string;
+  province: string;
+  postalCode: string;
+  lat?: number;
+  lng?:number;
+  fullAdress:string;
+  coordinates: string;
   status: string;
   userId?: number;
 }
