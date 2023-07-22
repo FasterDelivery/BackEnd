@@ -11,8 +11,8 @@ export interface IPackage {
   province: string;
   postalCode: string;
   lat?: number;
-  lng?:number;
-  fullAdress:string;
+  lng?: number;
+  fullAdress: string;
   coordinates: string;
   status: string;
   userId?: number;
