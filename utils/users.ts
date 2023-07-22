@@ -9,7 +9,8 @@ const users: IUser[] = [
     address: "672 Haas Parkway",
     phone: "3648104729",
     password: "admin",
-    status: "active"
+    status: "active",
+    isAdmin: true
   },
 
   {

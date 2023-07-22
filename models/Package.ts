@@ -1,6 +1,7 @@
 import { Model, DataTypes } from "sequelize";
 import db from "../config/db";
 import { IPackage } from "../interfaces/IPackage";
+import  getCoordinates from "../utils/coordinates/index"
 
 class Package extends Model<IPackage> {
   public id!: number;
@@ -9,7 +10,15 @@ class Package extends Model<IPackage> {
   public quantity!: number;
   public weight!: number;
   public deliveryday!: Date;
-  public address!: string;
+  public street!: string;
+  public number!: number;
+  public city!: string;
+  public province!: string;
+  public postalCode!: string;
+  public lat?: number;
+  public lng?: number;
+  public fullAdress!: string;
+  public coordinates!: string;
   public status!: string;
 
   static findByName(clientname: string) {
@@ -29,10 +38,42 @@ Package.init(
     quantity: { type: DataTypes.INTEGER },
     weight: { type: DataTypes.FLOAT },
     deliveryday: { type: DataTypes.DATE },
-    address: { type: DataTypes.STRING },
+    street: { type: DataTypes.STRING },
+    number: { type: DataTypes.INTEGER },
+    city: { type: DataTypes.STRING },
+    province: { type: DataTypes.STRING },
+    postalCode: { type: DataTypes.STRING },
+    lat: { type: DataTypes.FLOAT },
+    lng: { type: DataTypes.FLOAT },
+    fullAdress: {
+      type: DataTypes.VIRTUAL,
+      get() {
+        return `${this.street}, ${this.number}, ${this.city}, ${this.province}, ${this.postalCode}`;
+      }
+    },
+    coordinates: {
+      type: DataTypes.VIRTUAL,
+      get() {
+        return `${this.lat}, ${this.lng}`;
+      }
+    },
     status: { type: DataTypes.STRING }
   },
   { sequelize: db, modelName: "package" }
 );
+
+Package.beforeCreate(async (paquete) => {
+  const [lat, lng] = await getCoordinates(
+    `${paquete.street} ${paquete.number}`,
+    paquete.city,
+    paquete.province,
+    paquete.postalCode
+  );
+  if (lat && lng) {
+    paquete.lat = lat;
+    paquete.lng = lng;
+  } else console.log(paquete.dataValues);
+  ;
+});
 
 export default Package;
