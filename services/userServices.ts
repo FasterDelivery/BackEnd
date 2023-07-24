@@ -153,7 +153,7 @@ export async function sendMail(email: string): Promise<string> {
     from: "fastdeliveryrecovery@gmail.com",
     to: email,
     subject: "Reestablecer Contraseña",
-    text: `Hacé click en la siguiente liga para reestablecer tu contraseña http://localhost:3000/cambiar?token=${token}`
+    text: `Hacé click en la siguiente liga para reestablecer tu contraseña https://3.91.204.112/cambiar?token=${token}`
   };
 
   try {
