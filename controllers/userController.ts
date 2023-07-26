@@ -7,7 +7,8 @@ import {
   getAllUsers,
   getAllActiveUsers,
   getUser,
-  sendMail
+  sendMail,
+  getDetailDeliveries
 } from "../services/userServices";
 export async function register(req: Request, res: Response): Promise<Response> {
   try {
@@ -93,5 +94,16 @@ export async function recover(req: Request, res: Response) {
     res.send(mail);
   } catch (error) {
     return res.status(404).send({ message: (error as Error).message });
+  }
+}
+
+export async function getDetailDelivery(req: Request, res: Response) {
+  const { id } = req.params;
+  const toNumber = parseFloat(id);
+  try {
+    const detail = await getDetailDeliveries(toNumber);
+    res.send(detail);
+  } catch (error) {
+    return res.status(403).send({ message: (error as Error).message });
   }
 }
