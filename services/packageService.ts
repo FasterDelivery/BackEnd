@@ -1,3 +1,4 @@
+import { IPackage } from "../interfaces/IPackage";
 import { Package, User } from "../models";
 
 export async function selectPackagesService(
@@ -131,7 +132,7 @@ export async function getDeliveryPackagesService(id: string) {
   }
 }
 
-export async function createPackageService(packageData: any) {
+export async function createPackageService(packageData: IPackage) {
   try {
     const newPackage = await Package.create(packageData);
     if (!newPackage) {
@@ -190,14 +191,12 @@ export async function getAllPackagesDayService(day: string) {
   try {
     const packages: Package[] = await Package.findAll({
       where: {
-        deliveryday: day
+        deliveryday: day,
+        status: "pendiente"
       }
     });
-    if (!packages[0]) {
-      throw new Error("No packages found");
-    }
     return packages;
-  } catch (error) {
-    throw new Error("Internal Server Error");
+  } catch (error: any) {
+    throw new Error(`Internal Server Error:${error.message}`);
   }
 }

@@ -157,7 +157,7 @@ router.get("/:idUser/package/:idPackage", isDelivery, viewPackage);
  */
 
 router.get("/packages", isDelivery, getAllPackages); //pendientes
-router.get("/packagesDay", isDelivery, getAllpackagesDay);
+router.get("/packagesDay/:currentDate", isDelivery, getAllpackagesDay); // tomar los paquetes pendientes del dia
 
 /**
  * @openapi

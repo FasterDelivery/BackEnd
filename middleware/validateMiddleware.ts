@@ -10,7 +10,7 @@ export async function isAdmin(req: any, res: any, next: any) {
       if (!decodedUser.payload.isAdmin) {
         return res.status(401).send({ message: "User unathorized" });
       }
-      req.body = decodedUser.payload;
+      //  req.body = decodedUser.payload;
       return next();
     } catch {
       return res.status(401).send({ message: "Invalid Token" });
