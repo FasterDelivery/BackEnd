@@ -10,7 +10,8 @@ import {
   getDeliveryPackagesService,
   viewPackageService,
   historialPackagesService,
-  editPackageStatusService
+  editPackageStatusService,
+  getAllPackagesDayService
 } from "../services/packageService";
 
 export async function selectPackages(req: Request, res: Response) {
@@ -82,6 +83,19 @@ export async function getAllPackages(req: Request, res: Response) {
     return res.status(500).send({ message: (error as Error).message });
   }
 }
+
+export async function getAllpackagesDay(req: Request, res: Response) {
+  try {
+    const { day } = req.body;
+    const AllPackahesDay = await getAllPackagesDayService(day);
+    return res
+      .status(200)
+      .send({ AllPackahesDay, message: "All packages Day" });
+  } catch (error) {
+    return res.status(500).send({ message: (error as Error).message });
+  }
+}
+
 export async function getDeliveryPackages(req: Request, res: Response) {
   try {
     const id: string = req.params.id;

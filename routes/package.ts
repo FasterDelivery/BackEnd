@@ -11,7 +11,8 @@ import {
   getDeliveryPackages,
   viewPackage,
   historialPackages,
-  editPackageTake
+  editPackageTake,
+  getAllpackagesDay
 } from "../controllers/packagesController";
 
 const router: Router = express.Router();
@@ -156,6 +157,7 @@ router.get("/:idUser/package/:idPackage", isDelivery, viewPackage);
  */
 
 router.get("/packages", isDelivery, getAllPackages); //pendientes
+router.get("/packagesDay", isDelivery, getAllpackagesDay);
 
 /**
  * @openapi

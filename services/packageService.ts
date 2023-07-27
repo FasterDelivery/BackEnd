@@ -185,3 +185,19 @@ export async function historialPackagesService(userId: string) {
     throw new Error("Internal server error");
   }
 }
+
+export async function getAllPackagesDayService(day: string) {
+  try {
+    const packages: Package[] = await Package.findAll({
+      where: {
+        deliveryday: day
+      }
+    });
+    if (!packages[0]) {
+      throw new Error("No packages found");
+    }
+    return packages;
+  } catch (error) {
+    throw new Error("Internal Server Error");
+  }
+}
