@@ -41,8 +41,6 @@ export async function editPackage(req: Request, res: Response) {
 export async function editPackageTake(req: Request, res: Response) {
   try {
     const packageId = req.params.idPackage;
-    console.log(req.body);
-
     const editedPackage = await editPackageStatusService(packageId, req.body);
     return res
       .status(200)
@@ -86,11 +84,11 @@ export async function getAllPackages(req: Request, res: Response) {
 
 export async function getAllpackagesDay(req: Request, res: Response) {
   try {
-    const { day } = req.body;
-    const AllPackahesDay = await getAllPackagesDayService(day);
+    const day: string = req.params.currentDate;
+    const AllPackagesDay = await getAllPackagesDayService(day);
     return res
       .status(200)
-      .send({ AllPackahesDay, message: "All packages Day" });
+      .send({ AllPackagesDay, message: "All packages Day" });
   } catch (error) {
     return res.status(500).send({ message: (error as Error).message });
   }
