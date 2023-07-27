@@ -9,7 +9,8 @@ import {
   deletePackageService,
   getDeliveryPackagesService,
   viewPackageService,
-  historialPackagesService
+  historialPackagesService,
+  editPackageStatusService
 } from "../services/packageService";
 
 export async function selectPackages(req: Request, res: Response) {
@@ -28,6 +29,20 @@ export async function editPackage(req: Request, res: Response) {
     const packageId = req.params.idPackage;
     const userId = req.params.idUser;
     const editedPackage = await editPackageService(packageId, userId, req.body);
+    return res
+      .status(200)
+      .send({ editedPackage, message: "Package edited successfully" });
+  } catch (error) {
+    return res.status(500).send({ message: (error as Error).message });
+  }
+}
+
+export async function editPackageTake(req: Request, res: Response) {
+  try {
+    const packageId = req.params.idPackage;
+    console.log(req.body);
+
+    const editedPackage = await editPackageStatusService(packageId, req.body);
     return res
       .status(200)
       .send({ editedPackage, message: "Package edited successfully" });

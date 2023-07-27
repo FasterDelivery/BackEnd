@@ -45,6 +45,26 @@ export async function editPackageService(
   }
 }
 
+export async function editPackageStatusService(
+  packageId: string,
+  packageData: any
+) {
+  try {
+    const [_, [editedPackage]] = await Package.update(packageData, {
+      where: { id: packageId },
+      returning: true,
+      individualHooks: true
+    });
+    if (!editedPackage) {
+      throw new Error("Package not found");
+    }
+    console.log(_);
+    return editedPackage;
+  } catch (error) {
+    throw new Error("Internal Server Error");
+  }
+}
+
 export async function viewPackageService(packageId: number, userId: number) {
   try {
     const myPackages = await Package.findOne({

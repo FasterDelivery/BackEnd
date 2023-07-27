@@ -10,7 +10,8 @@ import {
   updatePackage,
   getDeliveryPackages,
   viewPackage,
-  historialPackages
+  historialPackages,
+  editPackageTake
 } from "../controllers/packagesController";
 
 const router: Router = express.Router();
@@ -106,6 +107,7 @@ router.put("/:id/select/packages", isDelivery, selectPackages);
  *            description: Error en servidor
  */
 router.put("/:idUser/edit/package/:idPackage", isDelivery, editPackage);
+router.put("/edit/package/:idPackage", editPackageTake); // cambiarle el status al paquete
 
 router.get("/:idUser/package/:idPackage", isDelivery, viewPackage);
 /**
