@@ -83,6 +83,22 @@ export async function viewPackageService(packageId: number, userId: number) {
   }
 }
 
+export async function getPackageById(packageId: string) {
+  try {
+    const myPackage = await Package.findOne({
+      where: {
+        id: packageId
+      }
+    });
+    if (!myPackage) {
+      throw new Error("Packages not found");
+    }
+    return myPackage;
+  } catch (error) {
+    throw new Error("Internal Server Error");
+  }
+}
+
 export async function getAllDeliveryPackagesService(userId: string) {
   try {
     const packages: Package[] = await Package.findAll({

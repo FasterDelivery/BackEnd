@@ -12,7 +12,8 @@ import {
   viewPackage,
   historialPackages,
   editPackageTake,
-  getAllpackagesDay
+  getAllpackagesDay,
+  deleteDeliveredPackage
 } from "../controllers/packagesController";
 
 const router: Router = express.Router();
@@ -376,6 +377,7 @@ router.put("/edit/package/:id", isAdmin, updatePackage);
  *            description: Error en servidor
  */
 router.delete("/delete/package/:id", isAdmin, deletePackage);
+router.delete("/delete/:id", isDelivery, deleteDeliveredPackage);
 
 router.get("/myPackages/:idUser", isDelivery, historialPackages);
 export default router;
