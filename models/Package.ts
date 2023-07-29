@@ -57,7 +57,7 @@ Package.init(
         return `${this.lat}, ${this.lng}`;
       }
     },
-    status: { type: DataTypes.STRING }
+    status: { type: DataTypes.STRING, defaultValue: "pendiente" }
   },
   { sequelize: db, modelName: "package" }
 );
