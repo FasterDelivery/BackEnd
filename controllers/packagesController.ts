@@ -13,7 +13,8 @@ import {
   editPackageStatusService,
   getAllPackagesDayService,
   getAllPackagesStatusService,
-  getAllpackagesbyDayService
+  getAllpackagesbyDayService,
+  getPackageById
 } from "../services/packageService";
 
 export async function selectPackages(req: Request, res: Response) {
@@ -160,6 +161,24 @@ export async function deletePackage(req: Request, res: Response) {
     return res.status(500).send({ message: (error as Error).message });
   }
 }
+
+export async function deleteDeliveredPackage(req: Request, res: Response) {
+  try {
+    const packageId = req.params.id;
+    const toBeDeleted = await getPackageById(packageId);
+    if (toBeDeleted.status === "entregado") {
+      await deletePackageService(packageId);
+      return res.status(200).send({ message: "Package deleted successfully" });
+    } else {
+      return res
+        .status(401)
+        .send({ message: "You do not have permission to delete" });
+    }
+  } catch (error) {
+    return res.status(500).send({ message: (error as Error).message });
+  }
+}
+
 export async function historialPackages(req: Request, res: Response) {
   try {
     const userId = req.params.id;
