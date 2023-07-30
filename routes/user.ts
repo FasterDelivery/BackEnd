@@ -271,7 +271,7 @@ router.get("/deliveries", isAdmin, getAllDeliveries);
  */
 router.get("/deliveries/active", isAdmin, getAllActiveDeliveries);
 
-router.get("details/:id", isAdmin, viewDeliveryDetails);
+router.get("/details/:id", isAdmin, viewDeliveryDetails);
 
 router.get("/me", validateAuth, getSession);
 
