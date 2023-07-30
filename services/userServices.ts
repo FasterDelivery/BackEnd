@@ -39,18 +39,25 @@ export async function authenticateUser(email: string, password: string) {
   }
 }
 
-export async function updateUser(userId: string, userData: IUser) {
+export async function updateUser(
+  userId: string,
+  userData: IUser,
+  userBody: any
+) {
   try {
-    const [_, [editedUser]] = await User.update(userData, {
-      where: { id: userId },
-      returning: true,
-      individualHooks: true
-    });
-    console.log(_);
-    if (!editedUser) {
-      throw new Error("Invalid credentials");
+    const user = await User.findOne({ where: { email: userData.email } });
+    if (String(user?.dataValues?.id) === userId || userData.isAdmin) {
+      const [_, [editedUser]] = await User.update(userBody, {
+        where: { id: userId },
+        returning: true,
+        individualHooks: true
+      });
+      console.log(_);
+      if (!editedUser) {
+        throw new Error("Invalid credentials");
+      }
+      return editedUser;
     }
-    return editedUser;
   } catch (error) {
     throw new Error("Internal Server Error");
   }

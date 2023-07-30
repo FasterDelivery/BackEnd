@@ -44,7 +44,7 @@ export async function validateAuth(req: any, res: any, next: any) {
     try {
       const decodedUser: any = validateToken(token);
       if (decodedUser) {
-        req.body = decodedUser.payload;
+        req.user = decodedUser.payload;
         next();
       }
     } catch {
