@@ -18,7 +18,7 @@ app.use(
     origin: "*", // Allow requests from any domain
     methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization"],
-    credentials: true,
+    credentials: true
   })
 );
 
@@ -37,9 +37,9 @@ app.use((err: Error, req: Request, res: Response, next: NextFunction): void => {
 db.sync({ force: false }).then(() => {
   const options = {
     key: fs.readFileSync("/etc/ssl/private/nginx-selfsigned.key"),
-    cert: fs.readFileSync("/etc/ssl/certs/nginx-selfsigned.crt"),
+    cert: fs.readFileSync("/etc/ssl/certs/nginx-selfsigned.crt")
   };
-
+  
   https.createServer(options, app).listen(3001, () => {
     console.log(`Server listening on port 3001 (HTTPS)`);
     swaggerDocs(app, 3001);

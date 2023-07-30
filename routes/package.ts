@@ -13,6 +13,8 @@ import {
   historialPackages,
   editPackageTake,
   getAllpackagesDay,
+  getAllpackagesStatus,
+  getAllpackagesbyDayStatus,
   deleteDeliveredPackage
 } from "../controllers/packagesController";
 
@@ -160,6 +162,9 @@ router.get("/:idUser/package/:idPackage", isDelivery, viewPackage);
 router.get("/packages", isDelivery, getAllPackages); //pendientes
 router.get("/packagesDay/:currentDate", isDelivery, getAllpackagesDay); // tomar los paquetes pendientes del dia
 
+router.get("/packagestodos", isAdmin, getAllpackagesStatus); // todos los paquetes todos los status
+
+router.get("/packagestodos/:deliveryDay", isAdmin, getAllpackagesbyDayStatus); // todos los paquetes por dia
 /**
  * @openapi
  * /api/package/{idUser}/deliveryPackages:
