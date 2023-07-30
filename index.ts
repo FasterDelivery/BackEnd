@@ -39,6 +39,7 @@ db.sync({ force: false }).then(() => {
     key: fs.readFileSync("/etc/ssl/private/nginx-selfsigned.key"),
     cert: fs.readFileSync("/etc/ssl/certs/nginx-selfsigned.crt")
   };
+  
   https.createServer(options, app).listen(3001, () => {
     console.log(`Server listening on port 3001 (HTTPS)`);
     swaggerDocs(app, 3001);
