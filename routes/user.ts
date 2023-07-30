@@ -153,7 +153,7 @@ router.post("/login", login);
  *            description: Error en servidor
  */
 
-router.put("/edit/:id", isDelivery, editUser);
+router.put("/edit/:id", validateAuth, editUser);
 /**
  * @openapi
  * /api/user/delete/{id}:

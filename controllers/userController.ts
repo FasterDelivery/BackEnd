@@ -31,10 +31,10 @@ export async function login(req: Request, res: Response): Promise<Response> {
   }
 }
 
-export async function editUser(req: Request, res: Response): Promise<Response> {
+export async function editUser(req: any, res: Response): Promise<Response> {
   try {
     const userId = req.params.id;
-    const editedUser = await updateUser(userId, req.body);
+    const editedUser = await updateUser(userId, req.user, req.body);
     return res
       .status(200)
       .send({ editedUser, message: "User edited successfully" });
@@ -94,9 +94,9 @@ export async function viewDeliveryDetails(
   }
 }
 
-export async function getSession(req: Request, res: Response) {
+export async function getSession(req: any, res: Response) {
   try {
-    const user = await getUser(req.body.email);
+    const user = await getUser(req.user.email);
     res.send(user);
   } catch (error) {
     return res.status(404).send({ message: (error as Error).message });
