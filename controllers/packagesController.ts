@@ -11,7 +11,9 @@ import {
   viewPackageService,
   historialPackagesService,
   editPackageStatusService,
-  getAllPackagesDayService
+  getAllPackagesDayService,
+  getAllPackagesStatusService,
+  getAllpackagesbyDayService
 } from "../services/packageService";
 
 export async function selectPackages(req: Request, res: Response) {
@@ -77,6 +79,29 @@ export async function getAllPackages(req: Request, res: Response) {
   try {
     const allPackages = await getAllPackagesService();
     return res.status(200).send({ allPackages, message: "All packages" });
+  } catch (error) {
+    return res.status(500).send({ message: (error as Error).message });
+  }
+}
+
+export async function getAllpackagesStatus(req: Request, res: Response) {
+  try {
+    const allPackages = await getAllPackagesStatusService();
+    return res
+      .status(200)
+      .send({ allPackages, message: "All packages All status" });
+  } catch (error) {
+    return res.status(500).send({ message: (error as Error).message });
+  }
+}
+
+export async function getAllpackagesbyDayStatus(req: Request, res: Response) {
+  try {
+    const day: string = req.params.deliveryDay;
+    const allPackages = await getAllpackagesbyDayService(day);
+    return res
+      .status(200)
+      .send({ allPackages, message: "All packages All status by Day" });
   } catch (error) {
     return res.status(500).send({ message: (error as Error).message });
   }

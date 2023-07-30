@@ -115,6 +115,34 @@ export async function getAllPackagesService() {
   }
 }
 
+export async function getAllPackagesStatusService() {
+  try {
+    const allPackages = await Package.findAll();
+    if (!allPackages) {
+      throw new Error("Packages not found");
+    }
+    return allPackages;
+  } catch (error) {
+    throw new Error("Internal Server Error");
+  }
+}
+
+export async function getAllpackagesbyDayService(deliveryday: string) {
+  try {
+    const allPackages = await Package.findAll({
+      where: {
+        deliveryday: deliveryday
+      }
+    });
+    if (!allPackages) {
+      throw new Error("Packages not found");
+    }
+    return allPackages;
+  } catch (error) {
+    throw new Error("Internal Server Error");
+  }
+}
+
 export async function getDeliveryPackagesService(id: string) {
   try {
     const allPackages = await Package.findAll({
