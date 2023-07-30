@@ -378,6 +378,8 @@ router.put("/edit/package/:id", isAdmin, updatePackage);
  */
 router.delete("/delete/package/:id", isAdmin, deletePackage);
 router.delete("/delete/:id", isDelivery, deleteDeliveredPackage);
+router.get("/:idUser", isAdmin, getAllDeliveryPackages);
+
 
 router.get("/myPackages/:idUser", isDelivery, historialPackages);
 export default router;
